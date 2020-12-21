@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Activity" representedClassName="Activity" parentEntity="TripNode" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="Transformable"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Coach" representedClassName="Coach" parentEntity="Traffic" syncable="YES">
+        <attribute name="coachbrand" optional="YES" attributeType="String"/>
+        <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="confirmation" optional="YES" attributeType="String"/>
+        <attribute name="entrance" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Cruise" representedClassName="Cruise" parentEntity="Traffic" syncable="YES">
+        <attribute name="carbin" optional="YES" attributeType="String"/>
+        <attribute name="carbinType" optional="YES" attributeType="String"/>
+        <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="confirmation" optional="YES" attributeType="String"/>
+        <attribute name="cruiseLine" optional="YES" attributeType="String"/>
+        <attribute name="shipName" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Feed" representedClassName="Feed" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="Transformable"/>
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="postDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="poster" optional="YES" attributeType="String"/>
+        <attribute name="posterAvatar" optional="YES" attributeType="String"/>
+        <attribute name="testPhoto" optional="YES" attributeType="String"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TripNode" inverseName="feeds" inverseEntity="TripNode"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FeedPhoto" inverseName="owner" inverseEntity="FeedPhoto"/>
+    </entity>
+    <entity name="FeedPhoto" representedClassName="FeedPhoto" syncable="YES">
+        <attribute name="localFileName" optional="YES" attributeType="String"/>
+        <attribute name="remoteUrl" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Feed" inverseName="photos" inverseEntity="Feed"/>
+    </entity>
+    <entity name="Flight" representedClassName="Flight" parentEntity="Traffic" syncable="YES">
+        <attribute name="aircraft" optional="YES" attributeType="String"/>
+        <attribute name="airline" optional="YES" attributeType="String"/>
+        <attribute name="arriving_gate" optional="YES" attributeType="String"/>
+        <attribute name="arriving_terminal" optional="YES" attributeType="String"/>
+        <attribute name="baggage_claim" optional="YES" attributeType="String"/>
+        <attribute name="confirmation" optional="YES" attributeType="String"/>
+        <attribute name="depart_gate" optional="YES" attributeType="String"/>
+        <attribute name="depart_terminal" optional="YES" attributeType="String"/>
+        <attribute name="flightNo" optional="YES" attributeType="String"/>
+        <attribute name="seat" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Rail" representedClassName="Rail" parentEntity="Traffic" syncable="YES">
+        <attribute name="carrier" optional="YES" attributeType="String"/>
+        <attribute name="coach" optional="YES" attributeType="String"/>
+        <attribute name="confirmation" optional="YES" attributeType="String"/>
+        <attribute name="seat_class" optional="YES" attributeType="String"/>
+        <attribute name="seat_number" optional="YES" attributeType="String"/>
+        <attribute name="train_number" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Traffic" representedClassName="Traffic" parentEntity="TripNode" syncable="YES">
+        <attribute name="endAddress" optional="YES" attributeType="Transformable"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="startAddress" optional="YES" attributeType="Transformable"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="cover" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="destination" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="synch" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="nodes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TripNode" inverseName="owner" inverseEntity="TripNode"/>
+    </entity>
+    <entity name="TripNode" representedClassName="TripNode" syncable="YES">
+        <attribute name="contact" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="order" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Feed" inverseName="owner" inverseEntity="Feed"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="nodes" inverseEntity="Trip"/>
+    </entity>
+    <elements>
+        <element name="Activity" positionX="-18" positionY="126" width="128" height="88"/>
+        <element name="Coach" positionX="-27" positionY="117" width="128" height="103"/>
+        <element name="Cruise" positionX="-18" positionY="126" width="128" height="133"/>
+        <element name="Feed" positionX="-18" positionY="90" width="128" height="178"/>
+        <element name="FeedPhoto" positionX="-27" positionY="126" width="128" height="88"/>
+        <element name="Flight" positionX="-27" positionY="99" width="128" height="193"/>
+        <element name="Rail" positionX="-27" positionY="117" width="128" height="133"/>
+        <element name="Traffic" positionX="-63" positionY="36" width="128" height="103"/>
+        <element name="Trip" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="TripNode" positionX="0" positionY="117" width="128" height="178"/>
+    </elements>
+</model>

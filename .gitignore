@@ -1,0 +1,6 @@
+Pods/
+iTrip.xcworkspace/
+*/xcuserdata/
+DerivedData/*
+Podfile.lock
+*.DS_Store
