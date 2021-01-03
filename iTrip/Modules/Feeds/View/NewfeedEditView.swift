@@ -66,7 +66,7 @@ struct NewfeedEditView: View {
                     } label: {
                         HStack(spacing: 10) {
                             Image(systemName: "location.fill")
-                            Text(address.location == nil ? "Locate me" : address.description)
+                            Text(address.location.count == 0 ? "Locate me" : address.description)
                             .foregroundColor(.gray)
                             .lineLimit(2)
                             .truncationMode(.tail)

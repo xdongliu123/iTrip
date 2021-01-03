@@ -378,6 +378,15 @@
 			path = TripNodeDetaiView;
 			sourceTree = "<group>";
 		};
+		E5284AAD25A1ADBD00D02C7F /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				E5CEFC5B256BB77200CF5E9D /* ImageCache.swift */,
+				E5BD9FAF2556C19D0052A0CB /* ImageController.swift */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
 		E5424BB524CD7DA900B6CD21 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,6 +624,8 @@
 		E5CEFC52256BB75A00CF5E9D /* ASImageLoader */ = {
 			isa = PBXGroup;
 			children = (
+				E5CEFC37256B5D2B00CF5E9D /* ASLocalImageView.swift */,
+				E5CEFC3B256B608900CF5E9D /* ASLocalImageLoader.swift */,
 				E5CEFC53256BB75A00CF5E9D /* ASRemoteImageView.swift */,
 				E5CEFC54256BB75A00CF5E9D /* ASCache.swift */,
 				E5CEFC55256BB75A00CF5E9D /* ASRemoteImageManager.swift */,
@@ -778,14 +789,13 @@
 		E5F7D96024A338B200258F73 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E5284AAD25A1ADBD00D02C7F /* ImageCache */,
+				E5424BB524CD7DA900B6CD21 /* Fonts */,
 				E5CEFC52256BB75A00CF5E9D /* ASImageLoader */,
-				E535C7AE255E3A8B00BAE54C /* LoremSwiftum.swift */,
+				E5E354D824AF3078002FEED5 /* Network */,
 				E5F7D96124A3390600258F73 /* KeyboardResponder.swift */,
+				E535C7AE255E3A8B00BAE54C /* LoremSwiftum.swift */,
 				E569BA7A24DEA63D006DA430 /* Constants.swift */,
-				E5BD9FAF2556C19D0052A0CB /* ImageController.swift */,
-				E5CEFC37256B5D2B00CF5E9D /* ASLocalImageView.swift */,
-				E5CEFC3B256B608900CF5E9D /* ASLocalImageLoader.swift */,
-				E5CEFC5B256BB77200CF5E9D /* ImageCache.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -794,8 +804,6 @@
 			isa = PBXGroup;
 			children = (
 				E5EAA72624D5435300645184 /* UIKit-Component */,
-				E5424BB524CD7DA900B6CD21 /* Fonts */,
-				E5E354D824AF3078002FEED5 /* Network */,
 				E5BDD09D24A6F97C00682355 /* Widgets */,
 				E5BDD09C24A6F95700682355 /* ViewModifiers */,
 			);

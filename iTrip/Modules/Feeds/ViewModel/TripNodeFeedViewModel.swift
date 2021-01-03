@@ -25,7 +25,7 @@ class TripNodeFeedItemViewModel {
 
 class TripNodeFeedViewModel: ObservableObject {
     let tripNode: TripNode
-    @Published var feeds: [Feed] = Feed.feedsForInstaSection()
+    @Published var feeds: [Feed] = []
     let newFeedPublisher = PassthroughSubject<Void, Never>()
     let deletingFeedPublisher = PassthroughSubject<Feed, Never>()
     var subscription: AnyCancellable?
@@ -33,16 +33,18 @@ class TripNodeFeedViewModel: ObservableObject {
     
     init(_ tripNode: TripNode) {
         self.tripNode = tripNode
-        reloadFeeds()
+        loadFeeds()
         subscription = deletingFeedPublisher.sink { (feed) in
             self.deleteFeed(feed)
         }
     }
     
-    func reloadFeeds() {
+    func loadFeeds() {
         if let feedSet = tripNode.feeds as? Set<Feed> {
             feedSet.forEach { (feed) in
-                feed.id = "\(UUID())"
+                if feed.id == nil {
+                    feed.id = "\(UUID())"
+                }
             }
             feeds = Array(feedSet)
         }
@@ -60,7 +62,7 @@ class TripNodeFeedViewModel: ObservableObject {
             StrorageHelper.save()
             DispatchQueue.main.async {
                 self.showIndicator = false
-                self.reloadFeeds()
+                self.loadFeeds()
             }
         }
     }

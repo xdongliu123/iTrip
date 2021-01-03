@@ -90,6 +90,7 @@ class NewfeedEditViewModel: ObservableObject {
             DispatchQueue.global().async {
                 let feed = StrorageHelper.createEntity() as Feed
                 feed.content = tip
+                feed.id = "\(UUID())"
                 let address = TripAddress()
                 address.syncData(from: addressState)
                 feed.address = address

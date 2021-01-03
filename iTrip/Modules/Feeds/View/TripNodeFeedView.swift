@@ -51,8 +51,6 @@ struct TripNodeFeedView: View {
             ZStack(alignment: .center) {
                 content
                 // deleting indicator
-//                Rectangle()
-//                    .foregroundColor(Color.white.opacity(self.viewModel.showIndicator ? 0.5 : 0.0))
                 ActivityIndicator(isAnimating: self.$viewModel.showIndicator, style: .large)
                 
             }
@@ -66,7 +64,7 @@ struct TripNodeFeedView: View {
                 Image(systemName: "plus").font(Font.system(size: 20, weight: .bold  ,design: .default))
             })
             .onReceive(viewModel.newFeedPublisher.eraseToAnyPublisher()) { () in
-                viewModel.reloadFeeds()
+                viewModel.loadFeeds()
             }
             .sheet(isPresented: $addNewFeed) {
                 NewfeedEditView(viewModel: NewfeedEditViewModel(tripNode: viewModel.tripNode, publisher: viewModel.newFeedPublisher))

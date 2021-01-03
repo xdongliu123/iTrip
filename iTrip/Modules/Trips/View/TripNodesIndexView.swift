@@ -250,7 +250,7 @@ struct TripNodesIndexView: View {
             self.viewModel.editingActivityVM.data = node.data
             self.viewModel.editingActivityVM.type = TripNodeType.init(rawValue: Int(node.data.type))!
             let activityView = TripNodeDetailView(viewModel: self.viewModel.editingActivityVM,
-                                                title: "Activity",
+                                                  title: self.viewModel.editingActivityVM.title,
                                                 viewState: ActivityViewState(),
                                                 editViewBuilder: {
                                                     return AnyView(ActivityEditView(viewModel: self.viewModel.editingActivityVM))
