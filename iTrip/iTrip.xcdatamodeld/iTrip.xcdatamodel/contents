@@ -74,10 +74,12 @@
     </entity>
     <entity name="TripNode" representedClassName="TripNode" syncable="YES">
         <attribute name="contact" optional="YES" attributeType="String"/>
+        <attribute name="endTipPushId" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="order" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="startTipPushId" optional="YES" attributeType="String"/>
         <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Feed" inverseName="owner" inverseEntity="Feed"/>
@@ -93,6 +95,6 @@
         <element name="Rail" positionX="-27" positionY="117" width="128" height="133"/>
         <element name="Traffic" positionX="-63" positionY="36" width="128" height="103"/>
         <element name="Trip" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="TripNode" positionX="0" positionY="117" width="128" height="178"/>
+        <element name="TripNode" positionX="0" positionY="117" width="128" height="208"/>
     </elements>
 </model>

@@ -184,13 +184,6 @@ class TripNodesIndexViewModel: ObservableObject {
         }
     }
     
-    func addTripNode(_ node: TripNode) {
-        if !(data.nodes ?? []).contains(node) {
-            data.addToNodes(node)
-        }
-        StrorageHelper.save()
-    }
-    
     func deleteTrip() -> Future<Void, Never> {
         Future<Void, Never>.init { (promise) in
             StrorageHelper.delete(model: self.data)

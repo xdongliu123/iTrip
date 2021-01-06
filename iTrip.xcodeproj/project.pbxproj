@@ -11,6 +11,9 @@
 		E50DFC122564C8C900CBAE2F /* NewfeedEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DFC112564C8C900CBAE2F /* NewfeedEditViewModel.swift */; };
 		E51A9297258C9412002AF580 /* IndicatorHScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51A9296258C9412002AF580 /* IndicatorHScrollView.swift */; };
 		E526101E24A888B000500F1E /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E526101D24A888B000500F1E /* PopupView */; };
+		E5284AB225A1B11000D02C7F /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5284AB125A1B11000D02C7F /* LocalNotificationManager.swift */; };
+		E5284AD525A1BEC200D02C7F /* PushNotificationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5284AD325A1BEC200D02C7F /* PushNotificationUtility.swift */; };
+		E5284AD625A1BEC200D02C7F /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5284AD425A1BEC200D02C7F /* PushNotificationManager.swift */; };
 		E531882F24EA258A005D2A4A /* StepperView in Frameworks */ = {isa = PBXBuildFile; productRef = E531882E24EA258A005D2A4A /* StepperView */; };
 		E531883124EABC6D005D2A4A /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E531883024EABC6D005D2A4A /* Number+Extension.swift */; };
 		E535C7A4255E390900BAE54C /* FeedPhoto+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E535C7A2255E390900BAE54C /* FeedPhoto+CoreDataClass.swift */; };
@@ -185,6 +188,9 @@
 		E50DFC0D2564C42D00CBAE2F /* NewfeedEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewfeedEditView.swift; sourceTree = "<group>"; };
 		E50DFC112564C8C900CBAE2F /* NewfeedEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewfeedEditViewModel.swift; sourceTree = "<group>"; };
 		E51A9296258C9412002AF580 /* IndicatorHScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorHScrollView.swift; sourceTree = "<group>"; };
+		E5284AB125A1B11000D02C7F /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		E5284AD325A1BEC200D02C7F /* PushNotificationUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationUtility.swift; sourceTree = "<group>"; };
+		E5284AD425A1BEC200D02C7F /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		E531883024EABC6D005D2A4A /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
 		E535C7A2255E390900BAE54C /* FeedPhoto+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedPhoto+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E535C7A3255E390900BAE54C /* FeedPhoto+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedPhoto+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -385,6 +391,15 @@
 				E5BD9FAF2556C19D0052A0CB /* ImageController.swift */,
 			);
 			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		E5284AD225A1BE9200D02C7F /* PushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				E5284AD425A1BEC200D02C7F /* PushNotificationManager.swift */,
+				E5284AD325A1BEC200D02C7F /* PushNotificationUtility.swift */,
+			);
+			path = PushNotification;
 			sourceTree = "<group>";
 		};
 		E5424BB524CD7DA900B6CD21 /* Fonts */ = {
@@ -789,6 +804,7 @@
 		E5F7D96024A338B200258F73 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E5284AD225A1BE9200D02C7F /* PushNotification */,
 				E5284AAD25A1ADBD00D02C7F /* ImageCache */,
 				E5424BB524CD7DA900B6CD21 /* Fonts */,
 				E5CEFC52256BB75A00CF5E9D /* ASImageLoader */,
@@ -796,6 +812,7 @@
 				E5F7D96124A3390600258F73 /* KeyboardResponder.swift */,
 				E535C7AE255E3A8B00BAE54C /* LoremSwiftum.swift */,
 				E569BA7A24DEA63D006DA430 /* Constants.swift */,
+				E5284AB125A1B11000D02C7F /* LocalNotificationManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1028,6 +1045,7 @@
 				E5BDD0A524A7115600682355 /* RegPanel.swift in Sources */,
 				E5EAA73F24D6B77D00645184 /* UIView+Extension.swift in Sources */,
 				E5D48B6E24C05ACB0090042C /* TripInfoDetailViewModel.swift in Sources */,
+				E5284AB225A1B11000D02C7F /* LocalNotificationManager.swift in Sources */,
 				E5F7D95924A2FAB000258F73 /* LoginModel.swift in Sources */,
 				E5424BA224CD32F500B6CD21 /* Feed+CoreDataProperties.swift in Sources */,
 				E5E354E424AF6BAB002FEED5 /* NetworkHelper.swift in Sources */,
@@ -1042,6 +1060,7 @@
 				E569BA8924DFD8FC006DA430 /* Cruise+CoreDataClass.swift in Sources */,
 				E5BDD0A924A733B500682355 /* String+Utility.swift in Sources */,
 				E5EEEBBF24BDD40B00DF1A6F /* TripsViewModel.swift in Sources */,
+				E5284AD525A1BEC200D02C7F /* PushNotificationUtility.swift in Sources */,
 				E550BF0A24AE16D700B29EF9 /* Welcome.swift in Sources */,
 				E5E01BB824C43210005E52C4 /* StrorageHelper.swift in Sources */,
 				E5BC0FFF24D91FA40097B985 /* Flight+CoreDataClass.swift in Sources */,
@@ -1100,6 +1119,7 @@
 				E5424BA724CD32F500B6CD21 /* Traffic+CoreDataClass.swift in Sources */,
 				E5610F592590472700EB7FFA /* ConcreteNodeViewBuilder.swift in Sources */,
 				E5610F55258F5AE800EB7FFA /* TripNodeDetailView.swift in Sources */,
+				E5284AD625A1BEC200D02C7F /* PushNotificationManager.swift in Sources */,
 				E554C7D024E23F3C0059A100 /* Activity+CoreDataClass.swift in Sources */,
 				E550BF1024AE1EC500B29EF9 /* IndexView.swift in Sources */,
 				E5424BBD24CE891F00B6CD21 /* enums.swift in Sources */,
@@ -1313,6 +1333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 100;
 				DEVELOPMENT_ASSET_PATHS = "\"iTrip/Preview Content\"";
 				DEVELOPMENT_TEAM = WYV4T55H4X;
 				ENABLE_PREVIEWS = YES;
@@ -1325,6 +1346,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdCulture.iTrip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1338,6 +1360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 100;
 				DEVELOPMENT_ASSET_PATHS = "\"iTrip/Preview Content\"";
 				DEVELOPMENT_TEAM = WYV4T55H4X;
 				ENABLE_PREVIEWS = YES;
@@ -1350,6 +1373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdCulture.iTrip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

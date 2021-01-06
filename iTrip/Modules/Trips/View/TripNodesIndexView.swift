@@ -69,40 +69,20 @@ struct TripNodesIndexView: View {
                 self.addTripNode()
             }
         }
-        .onReceive(self.viewModel.editingFlightVM.nodeChangePublisher, perform: { (tripNode) in
-            if tripNode != nil {
-                self.viewModel.addTripNode(tripNode!)
-            } else {
-                self.viewModel.refreshNodes()
-            }
+        .onReceive(self.viewModel.editingFlightVM.nodeChangePublisher, perform: { (_) in
+            self.viewModel.refreshNodes()
         })
-        .onReceive(self.viewModel.editingCoachVM.nodeChangePublisher, perform: { (tripNode) in
-            if tripNode != nil {
-                self.viewModel.addTripNode(tripNode!)
-            } else {
-                self.viewModel.refreshNodes()
-            }
+        .onReceive(self.viewModel.editingCoachVM.nodeChangePublisher, perform: { (_) in
+            self.viewModel.refreshNodes()
         })
-        .onReceive(self.viewModel.editingRailVM.nodeChangePublisher, perform: { (tripNode) in
-            if tripNode != nil {
-                self.viewModel.addTripNode(tripNode!)
-            } else {
-                self.viewModel.refreshNodes()
-            }
+        .onReceive(self.viewModel.editingRailVM.nodeChangePublisher, perform: { (_) in
+            self.viewModel.refreshNodes()
         })
-        .onReceive(self.viewModel.editingCruiseVM.nodeChangePublisher, perform: { (tripNode) in
-            if tripNode != nil {
-                self.viewModel.addTripNode(tripNode!)
-            } else {
-                self.viewModel.refreshNodes()
-            }
+        .onReceive(self.viewModel.editingCruiseVM.nodeChangePublisher, perform: { (_) in
+            self.viewModel.refreshNodes()
         })
-        .onReceive(self.viewModel.editingActivityVM.nodeChangePublisher, perform: { (tripNode) in
-            if tripNode != nil {
-                self.viewModel.addTripNode(tripNode!)
-            } else {
-                self.viewModel.refreshNodes()
-            }
+        .onReceive(self.viewModel.editingActivityVM.nodeChangePublisher, perform: { (_) in
+            self.viewModel.refreshNodes()
         })
         .actionSheet(isPresented: $showActionMenus, content: { () -> ActionSheet in
             ActionSheet.init(title: Text("Select Operator"),
@@ -146,27 +126,32 @@ struct TripNodesIndexView: View {
             flight.type = Int16(TripNodeType.flight.rawValue)
             self.viewModel.editingFlightVM.isEdit = false
             self.viewModel.editingFlightVM.data = flight
+            self.viewModel.editingFlightVM.owner = viewModel.data
         } else if nodeType! == .rail {
             let rail: Rail = StrorageHelper.createEntity()
             rail.type = Int16(TripNodeType.rail.rawValue)
             self.viewModel.editingRailVM.isEdit = false
             self.viewModel.editingRailVM.data = rail
+            self.viewModel.editingRailVM.owner = viewModel.data
         } else if nodeType! == .cruise {
             let cruise: Cruise = StrorageHelper.createEntity()
             cruise.type = Int16(TripNodeType.cruise.rawValue)
             self.viewModel.editingCruiseVM.isEdit = false
             self.viewModel.editingCruiseVM.data = cruise
+            self.viewModel.editingCruiseVM.owner = viewModel.data
         } else if nodeType! == .coach {
             let coach: Coach = StrorageHelper.createEntity()
             coach.type = Int16(TripNodeType.coach.rawValue)
             self.viewModel.editingCoachVM.isEdit = false
             self.viewModel.editingCoachVM.data = coach
+            self.viewModel.editingCoachVM.owner = viewModel.data
         } else {
             let activity: Activity = StrorageHelper.createEntity()
             activity.type = Int16(nodeType!.rawValue)
             self.viewModel.editingActivityVM.isEdit = false
             self.viewModel.editingActivityVM.data = activity
             self.viewModel.editingActivityVM.type = nodeType!
+            self.viewModel.editingActivityVM.owner = viewModel.data
         }
         self.showAddNodePage = true
         self.selectNodeType = false
@@ -305,10 +290,10 @@ struct TripNodePanel: View {
     func createTrafficView(_ traffic: Traffic) -> AnyView {
         let view = VStack(alignment: .leading) {
             HStack(spacing: 0) {
-                Text("arriving at: ")
+                Text("Arriving at: ")
                 Text(traffic.endDate!.formatString(format: "HH:mm"))
                 if traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!) > 0 {
-                    Text("(\(traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!)) days later)")
+                    Text(" (\(traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!)) days later)")
                     .font(Font.footnote)
                 }
             }

@@ -20,7 +20,7 @@ extension Activity {
         super.syncData(from: vs.parent)
         self.startDate = vs.startDate
         self.endDate = vs.endDate
-        if vs.address.location != nil {
+        if vs.address.location.count > 0 {
             address = TripAddress()
             address?.syncData(from: vs.address)
         }

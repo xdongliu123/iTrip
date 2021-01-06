@@ -54,6 +54,7 @@ class TripBasicInfoEditViewModel: ObservableObject {
         }
         if data == nil {
             data = StrorageHelper.createEntity()
+            data?.id = UUID().uuidString
         }
         data?.updateModel(with: tripItem)
         return true

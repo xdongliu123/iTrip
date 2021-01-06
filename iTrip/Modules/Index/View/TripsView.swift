@@ -15,29 +15,49 @@ struct TripsView: View {
     private var trips: FetchedResults<Trip>
     @State var addTrip = false
     
+    func tripView(isClose: Bool, item: Trip) -> some View {
+        if isClose {
+            return TripInfoDetailIView(TripNodesIndexViewModel(trip: item)).eraseToAnyView()
+        } else {
+            return TripNodesIndexView(TripNodesIndexViewModel(trip: item)).eraseToAnyView()
+        }
+    }
+    
     var tripList: ASTableViewSection<Int>
     {
         ASTableViewSection(
         id: 0,
             data: trips, onCellEvent: onCellEvent)
         { item, _ in
-            // completed trip detail page
-//            NavigationLink(destination: TripInfoDetailIView(TripNodesIndexViewModel(trip: item))) {
-//                TripItemView(trip: item)
-//            }
-            NavigationLink(destination: TripNodesIndexView(TripNodesIndexViewModel(trip: item))) {
+            NavigationLink(destination: tripView(isClose: false, item: item)) {
                 TripItemView(trip: item)
             }
         }
         .tableViewSetEstimatedSizes(headerHeight: 50) // Optional: Provide reasonable estimated heights for this section
     }
     
+    var content: some View {
+        if #available(iOS 14.0, *) {
+            return AnyView (
+                ScrollView {
+                    LazyVStack {
+                        ForEach(trips) { trip in
+                            NavigationLink(destination: LazyView(tripView(isClose: false, item: trip))) {
+                                TripItemView(trip: trip)
+                                // EmptyView()
+                            }
+                        }
+                    }
+                }
+            )
+        } else {
+            return AnyView(ASTableView {tripList}.separatorsEnabled(false))
+        }
+    }
+    
     var body: some View {
         NavigationView {
-            ASTableView {
-                tripList
-            }
-            .separatorsEnabled(false)
+            content
             .navigationBarTitle("Trips", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 self.addTrip = true

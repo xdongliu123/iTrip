@@ -10,10 +10,12 @@ import Combine
 import Foundation
 
 class TripNodeViewModel: ObservableObject {
+    static let advancedWarnMinuteNum: Double = 10
     var isEdit: Bool
     var data: TripNode
-    let publisher = PassthroughSubject<TripNode?, Never>()
-    var nodeChangePublisher: AnyPublisher<TripNode?, Never> {
+    var owner: Trip?
+    let publisher = PassthroughSubject<Bool, Never>()
+    var nodeChangePublisher: AnyPublisher<Bool, Never> {
         return publisher.eraseToAnyPublisher()
     }
     
@@ -36,10 +38,39 @@ class TripNodeViewModel: ObservableObject {
                     }
                 }
             }
+            self.deleteLocalPushs()
             StrorageHelper.delete(model: self.data)
-            self.publisher.send(nil)
+            self.publisher.send(true)
             promise(.success(Void()))
         }
+    }
+    
+    func save() {
+        // new node
+        if !self.isEdit {
+            self.data.id = UUID().uuidString
+        }
+        self.configureLocalPush()
+        if !self.isEdit {
+            owner?.addToNodes(self.data)
+        }
+        StrorageHelper.save()
+        self.publisher.send(self.isEdit)
+    }
+    
+    func configureLocalPush() {
+        deleteLocalPushs()
+        if let startDate = data.startDate() {
+            data.startTipPushId = LocalNotificationManager.registerLocalNotification(title: data.localPushTitle(), body: data.localPushBody(), dateTime: startDate - TripNodeViewModel.advancedWarnMinuteNum * 60, nodeId: data.id!)
+        }
+        if let endDate = data.endDate() {
+            data.endTipPushId = LocalNotificationManager.registerLocalNotification(title: data.localPushTitle(false), body: data.localPushBody(false), dateTime: endDate - TripNodeViewModel.advancedWarnMinuteNum * 60, nodeId: data.id!)
+        }
+    }
+    
+    func deleteLocalPushs() {
+        let pushIds = [data.startTipPushId, data.endTipPushId]
+        LocalNotificationManager.removeLocalPendingNotifications(ids: pushIds.compactMap { $0 })
     }
 }
 
@@ -97,7 +128,7 @@ class ActivityViewModel: TripNodeViewModel, GenerateConcreteNodeViewState {
             } else {
                 (self.data as! Activity).syncData(from: vs)
                 self.data.type = Int16(self.type.rawValue)
-                self.publisher.send(self.isEdit ? nil : self.data)
+                self.save()
                 promise(.success(Void()))
             }
         }
@@ -131,7 +162,7 @@ class FlightViewModel: TrafficViewModel, GenerateConcreteNodeViewState {
                 promise(.failure(error!))
             } else {
                 (self.data as! Flight).syncData(from: vs)
-                self.publisher.send(self.isEdit ? nil : self.data)
+                self.save()
                 promise(.success(Void()))
             }
         }
@@ -161,7 +192,7 @@ class RailViewModel: TrafficViewModel, GenerateConcreteNodeViewState {
                promise(.failure(error!))
             } else {
                 (self.data as! Rail).syncData(from: vs)
-                self.publisher.send(self.isEdit ? nil : self.data)
+                self.save()
                 promise(.success(Void()))
             }
         }
@@ -191,7 +222,7 @@ class CruiseViewModel: TrafficViewModel, GenerateConcreteNodeViewState {
                 promise(.failure(error!))
             } else {
                 (self.data as! Cruise).syncData(from: vs)
-                self.publisher.send(self.isEdit ? nil : self.data)
+                self.save()
                 promise(.success(Void()))
             }
         }
@@ -221,7 +252,7 @@ class CoachViewModel: TrafficViewModel, GenerateConcreteNodeViewState {
                 promise(.failure(error!))
             } else {
                 (self.data as! Coach).syncData(from: vs)
-                self.publisher.send(self.isEdit ? nil : self.data)
+                self.save()
                 promise(.success(Void()))
             }
         }

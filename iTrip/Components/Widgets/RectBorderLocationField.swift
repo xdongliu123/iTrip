@@ -31,6 +31,6 @@ struct RectBorderLocationField: View {
         .font(.body)
         .textFieldStyle(RectBorderLocationFieldStyle(title: title, mapClick: {
                 self.mapClick()
-            }, editing: editing, valid: valid))
+        }, editing: editing, valid: valid || value.wrappedValue == ""))
     }
 }

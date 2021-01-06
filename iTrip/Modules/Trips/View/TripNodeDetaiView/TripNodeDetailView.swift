@@ -75,7 +75,6 @@ struct TripNodeDetailView: View {
             if let generator = self.viewModel as? GenerateConcreteNodeViewState {
                 self.viewState = generator.viewState()
             }
-            StrorageHelper.save()
         })
         .onAppear {
             if let generator = self.viewModel as? GenerateConcreteNodeViewState {

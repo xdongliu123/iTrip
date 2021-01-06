@@ -113,8 +113,14 @@ struct TrafficViewState {
         if startAddress.location.count == 0 {
             return FormEditError(_description: "Depart address not set")
         }
+        if !startAddress.location.isValidCooridnate() {
+            return FormEditError(_description: "Depart address not valid")
+        }
         if endAddress.location.count == 0 {
             return FormEditError(_description: "Arriving address not set")
+        }
+        if !endAddress.location.isValidCooridnate() {
+            return FormEditError(_description: "Arriving address not valid")
         }
         if startDate.distance(to: endDate) <= 0 {
             return FormEditError(_description: "Arriving date must be earlier than depart date")

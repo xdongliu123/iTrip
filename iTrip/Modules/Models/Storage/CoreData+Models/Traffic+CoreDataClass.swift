@@ -20,17 +20,26 @@ extension Traffic {
         super.syncData(from: vs.parent)
         self.startDate = vs.startDate
         self.endDate = vs.endDate
-        if vs.startAddress.location != nil {
+        if vs.startAddress.location.count > 0 {
             startAddress = TripAddress()
             startAddress?.syncData(from: vs.startAddress)
         }
-        if vs.endAddress.location != nil {
+        if vs.endAddress.location.count > 0 {
             endAddress = TripAddress()
             endAddress?.syncData(from: vs.endAddress)
         }
     }
     
     @objc func trafficName() -> String {
+        if self.isKind(of: Flight.self) {
+            return "Flight"
+        } else if self.isKind(of: Rail.self) {
+            return "Rail"
+        } else if self.isKind(of: Cruise.self) {
+            return "Cruise"
+        } else if self.isKind(of: Coach.self) {
+            return "Coach"
+        }
         return "Traffic"
     }
     

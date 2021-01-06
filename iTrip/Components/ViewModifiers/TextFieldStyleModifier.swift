@@ -103,7 +103,7 @@ struct RectBorderLocationFieldStyle: TextFieldStyle {
     let valid: Bool
     
     func borderColor() -> Color {
-        return editing ? Color(rgb: 0x7B5DEC).opacity(0.9) : Color.gray.opacity(0.9);
+        return editing ? Color(rgb: 0x7B5DEC).opacity(0.9) : (valid ? Color.gray.opacity(0.9) : Color.red.opacity(0.9));
     }
     
     func _body(configuration: TextField<Self._Label>) -> some View {

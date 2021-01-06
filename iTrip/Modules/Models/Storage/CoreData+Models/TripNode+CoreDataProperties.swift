@@ -26,7 +26,8 @@ extension TripNode {
     @NSManaged public var state: Int16
     @NSManaged public var feeds: NSSet?
     @NSManaged public var owner: Trip?
-
+    @NSManaged public var startTipPushId: String?
+    @NSManaged public var endTipPushId: String?
 }
 
 // MARK: Generated accessors for feeds
