@@ -29,6 +29,7 @@ class MapPointSelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.showsScale = true
+        mapView.style
         searchBarHeightConstraint.constant = 80
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         searchAddressView.addGestureRecognizer(panGesture)

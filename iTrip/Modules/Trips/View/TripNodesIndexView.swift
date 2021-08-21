@@ -57,7 +57,9 @@ struct TripNodesIndexView: View {
         }), trailing: Button(action: {
             self.showActionMenus = true
         }) {
-            Image(systemName: "ellipsis").font(Font.system(size: 20, weight: .bold  , design: .default))
+            Image(systemName: "ellipsis")
+                .accentColor(.black)
+                .font(Font.system(size: 20, weight: .bold  , design: .default))
         })
         .onAppear(perform: {
             self.viewModel.startProgressTimer()
@@ -290,12 +292,12 @@ struct TripNodePanel: View {
     func createTrafficView(_ traffic: Traffic) -> AnyView {
         let view = VStack(alignment: .leading) {
             HStack(spacing: 0) {
-                Text("Arriving at: ")
-                Text(traffic.endDate!.formatString(format: "HH:mm"))
-                if traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!) > 0 {
-                    Text(" (\(traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!)) days later)")
-                    .font(Font.footnote)
-                }
+                Text("arriving: ")
+                Text(traffic.endDate!.formatString(format: "dd/MM HH:mm"))
+//                if traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!) > 0 {
+//                    Text(" (\(traffic.endDate!.diff(ofComponent: .day, fromDate: traffic.startDate!)) days later)")
+//                    .font(Font.footnote)
+//                }
             }
             .padding(.top, 0)
             .padding(.trailing, 0)

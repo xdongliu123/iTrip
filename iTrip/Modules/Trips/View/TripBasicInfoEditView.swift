@@ -29,7 +29,6 @@ struct TripBasicInfoEditView: View {
     
     var body: some View {
         GeometryReader {geo in
-        ZStack {
             VStack {
                 self.whiteNavBar("", backAction: {
                     self.presentationMode.wrappedValue.dismiss()
@@ -101,9 +100,9 @@ struct TripBasicInfoEditView: View {
                     }
                 }
             }
-            .padding(.bottom, self.keyboardListener.keyboardHeight)
-            .animation(Animation.default)
-        }
+            // iOS14会自动处理
+//            .padding(.bottom, self.keyboardListener.keyboardHeight)
+//            .animation(Animation.default)
         }
         .popup(isPresented: self.$viewModel.showPopupView, autohideIn: 3) {
             HStack {

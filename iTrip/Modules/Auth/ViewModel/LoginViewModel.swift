@@ -40,6 +40,8 @@ class LoginViewModel: ObservableObject {
     }
     
     func login(mobile: String, password: String, userModel: UserModel) {
+        userModel.isLogin.toggle()
+        return
         if mobile.count > 0 && password.count > 0 {
             if mobile.isValMobile() {
                 self.showLoadingIndicator = true

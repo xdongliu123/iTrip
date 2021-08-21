@@ -33,15 +33,15 @@ extension WelcomeView {
                 
                 // SMS Login
                 SMSLogPanel(viewModel: self.viewModel)
-                    .authCardStyle(keyboardShown: self.keyboardListener.keyboardShown, hideMode: self.viewModel.layerType != .SMSLogin).disabled(self.viewModel.showLoadingIndicator)
+                    .authCardStyle(keyboardShown: false, hideMode: self.viewModel.layerType != .SMSLogin).disabled(self.viewModel.showLoadingIndicator)
                 
                 // Register
                 RegPanel(viewModel: self.viewModel)
-                    .authCardStyle(keyboardShown: self.keyboardListener.keyboardShown, hideMode: self.viewModel.layerType != .Register).disabled(self.viewModel.showLoadingIndicator)
+                    .authCardStyle(keyboardShown: false, hideMode: self.viewModel.layerType != .Register).disabled(self.viewModel.showLoadingIndicator)
                 
                 // Login
                 LoginPanel(viewModel: self.viewModel)
-                    .authCardStyle(keyboardShown: self.keyboardListener.keyboardShown, hideMode: self.viewModel.layerType != .Login).disabled(self.viewModel.showLoadingIndicator)
+                    .authCardStyle(keyboardShown: false, hideMode: self.viewModel.layerType != .Login).disabled(self.viewModel.showLoadingIndicator)
                 
                 // Loading indicator
                 ActivityIndicatorView(isVisible: self.$viewModel.showLoadingIndicator, type: .default).frame(width: 40, height: 40).zIndex(4)

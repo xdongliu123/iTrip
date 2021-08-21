@@ -62,7 +62,9 @@ struct TripsView: View {
             .navigationBarItems(trailing: Button(action: {
                 self.addTrip = true
             }) {
-                Image(systemName: "plus").font(Font.system(size: 20, weight: .bold  ,design: .default))
+                Image(systemName: "plus")
+                    .accentColor(.black)
+                    .font(Font.system(size: 20, weight: .bold, design: .default))
             })
             .sheet(isPresented: self.$addTrip, onDismiss: {
             

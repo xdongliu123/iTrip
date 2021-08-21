@@ -10,8 +10,8 @@ import SwiftUI
 
 extension AnyTransition {
     static var flightDetailsTransition: AnyTransition {
-        let insertion = AnyTransition.move(edge: .leading).combined(with: .opacity)
-        let removal = AnyTransition.scale(scale: 1.0).combined(with: .opacity)
+        let insertion = AnyTransition.move(edge: .leading).combined(with: .opacity).animation(.easeInOut(duration: 2.0))
+        let removal = AnyTransition.scale(scale: 1.0).combined(with: .opacity).animation(.easeInOut(duration: 2.0))
         return .asymmetric(insertion: insertion, removal: removal)
     }
     

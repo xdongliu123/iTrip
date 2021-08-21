@@ -124,6 +124,7 @@ struct CruiseEditView: View {
                         }
                     }
                 }
+                // iOS14会自动处理
                 .padding(.bottom, self.keyboardListener.keyboardHeight)
                 .animation(Animation.default)
             }

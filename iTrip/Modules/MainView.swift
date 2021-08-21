@@ -12,12 +12,10 @@ struct MainView: View {
     @EnvironmentObject var userModel: UserModel
     
     var body: some View {
-        GeometryReader { _ in
-            if !self.userModel.isLogin {
-                IndexView().transition(.flightDetailsTransition)
-            } else {
-                WelcomeView().transition(.flightDetailsTransition)
-            }
+        if self.userModel.isLogin {
+            IndexView().transition(.flightDetailsTransition)
+        } else {
+            WelcomeView().transition(.flightDetailsTransition)
         }
     }
 }

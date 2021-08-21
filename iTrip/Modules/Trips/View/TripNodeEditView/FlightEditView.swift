@@ -139,8 +139,9 @@ struct FlightEditView: View {
                         }
                     }
                 }
-                .padding(.bottom, self.keyboardListener.keyboardHeight)
-                .animation(Animation.default)
+                // iOS14会自动处理
+//                .padding(.bottom, self.keyboardListener.keyboardHeight)
+//                .animation(Animation.default)
             }
             .sheet(isPresented: self.$showMapPointPicker) {
                 SelectMapPointWrapper(address: editAddress())
