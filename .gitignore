@@ -3,3 +3,4 @@ Pods/
 DerivedData/*
 Podfile.lock
 *.DS_Store
+*.resolved
